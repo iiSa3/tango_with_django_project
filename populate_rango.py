@@ -31,7 +31,7 @@ def populate():
          "url":"http://flask.pocoo.org"} ]
     cats = {"Python": {"pages": python_pages, "views": 128, "likes": 64},
             "Django": {"pages": django_pages, "views": 64, "likes": 32},
-            "Other Frameworks": {"pages": other_pages, "views": 0, "likes": 0} }
+            "Other Frameworks": {"pages": other_pages, "views":32, "likes": 16} }
     # If you want to add more catergories or pages,
     # add them to the dictionaries above.
     # The code below goes through the cats dictionary, then adds each category,
@@ -58,8 +58,8 @@ def add_page(cat, title, url, views=0):
 
 def add_cat(name, views, likes):
     c = Category.objects.get_or_create(name=name)[0]
-    c.views = views
-    c.likes = likes
+    c.views=views
+    c.likes=likes
     c.save()
     return c
 
