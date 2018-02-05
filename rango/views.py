@@ -139,7 +139,6 @@ def register(request):
 
 def user_login(request):
     username = None
-    password = None
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -154,9 +153,8 @@ def user_login(request):
                 return HttpResponse("Your Rango account is disabled")
         else:
             print("Invalid login details: {0}, {1}".format(username, password))
-            return HttpResponse("Invalid login details supplied.")
-    else:
-        return render(request, 'rango/login.html', {})
+
+    return render(request, 'rango/login.html', {'username': username})
 
 @login_required
 def user_logout(request):
@@ -165,4 +163,4 @@ def user_logout(request):
 
 @login_required
 def restricted(request):
-    return HttpResponse("Restricted")
+    return HttpResponse("Since you're logged in, you can see this text!")
